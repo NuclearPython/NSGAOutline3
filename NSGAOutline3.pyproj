@@ -5,7 +5,7 @@
     <ProjectGuid>f3419776-f651-4729-92b6-6c69b8b51a00</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>MultiVariateTest.py</StartupFile>
+    <StartupFile>MultiObjectiveTest.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

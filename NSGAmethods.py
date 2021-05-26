@@ -28,8 +28,7 @@ def runNSGA_generation(P_t, Q_t, problemParametersObject):
     num_children = len(Q_t)
     child_list = []
     for k in range(0, num_children):
-        #child = pop_member(numVariables, var_range, features=Q_t[k] * np.ones((1, 1)))
-        child = pop_member(numVariables, var_range, features=Q_t[k])
+        child = pop_member(numVariables, var_range, features=Q_t[k] * np.ones((1, 1)))
         child.objectives = objectiveFunctionlist
         child_list.append(child)
 
