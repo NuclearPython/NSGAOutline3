@@ -26,6 +26,7 @@ import numpy as np
 import operator
 
 from math import sqrt, exp, log, cos, pi
+from functools import reduce
 
 #-----------------------------------------------------------------------------#
 class ObjectiveFunction_multi(object):
@@ -136,9 +137,9 @@ class ObjectiveFunction_multi(object):
                 self.func = getattr(self, funcName)
                 assert hasattr(self.func, '__call__'), 'Invalid function handle'
             except KeyError:
-                print ('ERROR: The function specified does not exist in the '
+                print(('ERROR: The function specified does not exist in the '
                        'ObjectiveFunction class or the _FUNC_DICT. Allowable '
-                       'methods are {}'.format(self._FUNC_DICT))
+                       'methods are {}'.format(self._FUNC_DICT)))
 
 #-----------------------------------------------------------------------------#
 # The following sections are user modifiable to all for the use of new

@@ -15,7 +15,7 @@ from TestFunction import testfittness
 
 
 testarray = np.zeros(6)
-print testfittness(testarray)
+print(testfittness(testarray))
 sz = 100
 all_ints = ["i" for i in range(sz)]
 LB = np.zeros(sz)
@@ -25,7 +25,7 @@ UppB = np.ones(sz)
 gh = GnoweeHeuristics_multi(objective=ObjectiveFunction_multi(testfittness),
                       lowerBounds=LB, upperBounds=UppB,
                       varType=all_ints, optimum=0)
-print gh
+print(gh)
 
 # Run optimization
 (timeline) = Gnowee_multi.main_multi(gh)
@@ -43,4 +43,4 @@ plt.xlabel('Generation', fontsize=14) # label x axis
 plt.ylabel('Fittness', fontsize=14) # label y axis
 plt.gca().grid() # add grid lines
 plt.show() # display the plot
-print '\nThe result:\n', timeline[-1]
+print('\nThe result:\n', timeline[-1])

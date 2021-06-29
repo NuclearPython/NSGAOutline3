@@ -2,18 +2,18 @@ M = []
 
 L = [0 for i in range(10)]
 
-print L
+print(L)
 
 M.append(L)
 
-print M
+print(M)
 
 L[0] +=1
 
 L[7] +=1
 
-print L
+print(L)
 
 M.append(L)
 
-print M
+print(M)

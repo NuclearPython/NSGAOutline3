@@ -117,9 +117,9 @@ class Constraint(object):
                 self.func = getattr(self, funcName)
                 assert hasattr(self.func, '__call__'), 'Invalid function handle'
             except KeyError:
-                print ('ERROR: The function specified does not exist in the '
+                print(('ERROR: The function specified does not exist in the '
                    'Constraints class or the _FUNC_DICT. Allowable methods '
-                   'are {}'.format(self._FUNC_DICT))
+                   'are {}'.format(self._FUNC_DICT)))
 
     def get_penalty(self, violation):
         """!

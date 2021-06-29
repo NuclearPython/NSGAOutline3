@@ -11,4 +11,4 @@ print(gh)
 
 # Run optimization
 (timeline) = Gnowee.main(gh)
-print ('\nThe result:\n', timeline[-1])
+print(('\nThe result:\n', timeline[-1]))

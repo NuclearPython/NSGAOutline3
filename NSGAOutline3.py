@@ -27,10 +27,10 @@ listOfObjectiveFunctions = [ObjectiveFunction_multi(f1), ObjectiveFunction_multi
 varTypeVariable = "c"
 LB = [-55]
 UB = [55]
-print len(objectiveList)
+print(len(objectiveList))
 #print len(testObjectiveObject)
 
-print len(listOfObjectiveFunctions)
+print(len(listOfObjectiveFunctions))
 
 #test_problem = ProblemParameters_multi(objective = listOfObjectiveFunctions, lowerBounds = LB, upperBounds = UB, varType = varTypeVariable)
 test_gh = GnoweeHeuristics_multi(objective = listOfObjectiveFunctions, lowerBounds = LB, upperBounds = UB, varType = varTypeVariable, optimum = 0)
@@ -105,8 +105,8 @@ for GenCounter in range(0, MaxGenerations):
 
     #for debugging puposes:
     if GenCounter == 80:
-        print 'Check Fronts'
-    print 'Generation = ', GenCounter, '/ ', MaxGenerations
+        print('Check Fronts')
+    print('Generation = ', GenCounter, '/ ', MaxGenerations)
 
 #Plot the results
 LastPopulation = newish_population
@@ -117,16 +117,16 @@ for i in range(0, len(LastPopulation.population)):
     function1[i] = LastPopulation.population[i].fitness[0]
     function2[i] = LastPopulation.population[i].fitness[1]
 Last_pop = NSGAmethods.getParentsFromPopulation(LastPopulation)
-print "run complete"
-print 'Minimum function 1 fitness: ', min(function1)
-print 'Index of :', np.argmin(function1)#np.where(function1 == np.amin(function1))
-print 'x = :', Last_pop[np.argmin(function1)].variables
-print 'function 2 fitness at this index: ', function2[np.argmin(function1)]
-print '...'
-print 'Minimum function 2 fitness: ', min(function2)
-print 'Index of :', np.argmin(function2) #np.where(function2 == np.amin(function2))
-print 'x = :', Last_pop[np.argmin(function2)].variables
-print 'function 1 fitness at this index: ', function1[np.argmin(function2)]
+print("run complete")
+print('Minimum function 1 fitness: ', min(function1))
+print('Index of :', np.argmin(function1))#np.where(function1 == np.amin(function1))
+print('x = :', Last_pop[np.argmin(function1)].variables)
+print('function 2 fitness at this index: ', function2[np.argmin(function1)])
+print('...')
+print('Minimum function 2 fitness: ', min(function2))
+print('Index of :', np.argmin(function2)) #np.where(function2 == np.amin(function2))
+print('x = :', Last_pop[np.argmin(function2)].variables)
+print('function 1 fitness at this index: ', function1[np.argmin(function2)])
 
 plt.xlabel('Function 1', fontsize=15)
 plt.ylabel('Function 2', fontsize=15)

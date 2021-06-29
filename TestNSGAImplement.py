@@ -27,10 +27,10 @@ listOfObjectiveFunctions = [ObjectiveFunction_multi(basic1), ObjectiveFunction_m
 varTypeVariable = "c"
 LB = [0.5]
 UB = [120]
-print len(objectiveList)
+print(len(objectiveList))
 #print len(testObjectiveObject)
 
-print len(listOfObjectiveFunctions)
+print(len(listOfObjectiveFunctions))
 
 #test_problem = ProblemParameters_multi(objective = listOfObjectiveFunctions, lowerBounds = LB, upperBounds = UB, varType = varTypeVariable)
 test_gh = GnoweeHeuristics_multi(objective = listOfObjectiveFunctions, lowerBounds = LB, upperBounds = UB, varType = varTypeVariable, optimum = 0)
@@ -107,8 +107,8 @@ for GenCounter in range(0, MaxGenerations):
 
     #for debugging puposes:
     if GenCounter == 80:
-        print 'Check Fronts'
-    print 'Generation = ', GenCounter, '/ ', MaxGenerations
+        print('Check Fronts')
+    print('Generation = ', GenCounter, '/ ', MaxGenerations)
 
 #Plot the results
 LastPopulation = newish_population
@@ -122,4 +122,4 @@ plt.xlabel('Function 1', fontsize=15)
 plt.ylabel('Function 2', fontsize=15)
 plt.scatter(function1, function2)
 plt.show()
-print "run complete"
+print("run complete")

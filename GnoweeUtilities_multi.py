@@ -612,9 +612,9 @@ class ProblemParameters_multi(object):
                                   Constraint('mi_pressure_vessel', 0.0),
                                   [10.0, 1E-8], [50.0, 200.0],
                                   ['c', 'c', 'd', 'd'],
-                                  [(np.asarray(range(99))*0.0625+0.0625)\
+                                  [(np.asarray(list(range(99)))*0.0625+0.0625)\
                                                                      .tolist(),
-                                   (np.asarray(range(99))*0.0625+0.0625)\
+                                   (np.asarray(list(range(99)))*0.0625+0.0625)\
                                                                      .tolist()],
                                   6059.714335,
                                   ('\\textbf{MI Pressure Vessel Optimization '

@@ -81,9 +81,9 @@ def initial_samples(lb, ub, method, numSamp):
         if case('nolh'):
             dim = len(ub)
             m, q, r = params(dim)
-            conf = range(q)
+            conf = list(range(q))
             if r != 0:
-                remove = range(dim - r, dim)
+                remove = list(range(dim - r, dim))
                 nolh = NOLH(conf, remove)
             else:
                 nolh = NOLH(conf)
@@ -96,9 +96,9 @@ def initial_samples(lb, ub, method, numSamp):
         if case('nolh-rp'):
             dim = len(ub)
             m, q, r = params(dim)
-            conf = random.sample(range(q), q)
+            conf = random.sample(list(range(q)), q)
             if r != 0:
-                remove = random.sample(range(q-1), r)
+                remove = random.sample(list(range(q-1)), r)
                 nolh = NOLH(conf, remove)
             else:
                 nolh = NOLH(conf)
@@ -129,8 +129,8 @@ def initial_samples(lb, ub, method, numSamp):
             break
 
         if case():
-            print "Somehow you evaded my assert statement - good job!", \
-                  " However, you still need to use a valid method string."
+            print("Somehow you evaded my assert statement - good job!", \
+                  " However, you still need to use a valid method string.")
 
     return s
 
@@ -560,7 +560,7 @@ class WeightedRandomGenerator(object):
             running_total += w
             self.totals.append(running_total)
 
-    def next(self):
+    def __next__(self):
         """!
         Gets the next weight.
 
@@ -581,4 +581,4 @@ class WeightedRandomGenerator(object):
 
         @return \e integer: The randomly selected index of the weights array. \n
         """
-        return self.next()
+        return next(self)

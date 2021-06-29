@@ -301,7 +301,7 @@ def plot_tlf(alpha=1.5, gamma=1., numSamp=1E7, cutPoint=10.):
 
     # Initialize variables
     l = []  #List to store Levy distribution values
-    bins = np.array(range(0, int(cutPoint+1), 1))/cutPoint
+    bins = np.array(list(range(0, int(cutPoint+1), 1)))/cutPoint
 
     # Calculate the Levy distribution
     for i in range(0, len(bins)):

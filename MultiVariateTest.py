@@ -40,10 +40,10 @@ listOfObjectiveFunctions = [ObjectiveFunction_multi(MultiVariateTestFunction1), 
 varTypeVariable = ["c", "c"]
 LB = [-10, -10]
 UB = [10, 10]
-print len(objectiveList)
+print(len(objectiveList))
 
 
-print len(listOfObjectiveFunctions)
+print(len(listOfObjectiveFunctions))
 
 # Select optimization problem type and associated parameters
 test_gh = GnoweeHeuristics_multi(objective = listOfObjectiveFunctions, lowerBounds = LB, upperBounds = UB, varType = varTypeVariable, optimum = 0)
@@ -92,16 +92,16 @@ for i in range(0, numPop):
 plt.xlabel('Function 1', fontsize=15)
 plt.ylabel('Function 2', fontsize=15)
 plt.scatter(function1, function2)
-print '\nThe result:\n', timeline[-1]
-print '...'
-print 'Minimum function 1 fitness: ', min(function1)
-print 'Index of :', np.argmin(function1)#np.where(function1 == np.amin(function1))
-print 'x = :', Last_pop[np.argmin(function1)].variables
-print 'function 2 fitness at this index: ', function2[np.argmin(function1)]
-print '...'
-print 'Minimum function 2 fitness: ', min(function2)
-print 'Index of :', np.argmin(function2) #np.where(function2 == np.amin(function2))
-print 'x = :', Last_pop[np.argmin(function2)].variables
-print 'function 1 fitness at this index: ', function1[np.argmin(function2)]
+print('\nThe result:\n', timeline[-1])
+print('...')
+print('Minimum function 1 fitness: ', min(function1))
+print('Index of :', np.argmin(function1))#np.where(function1 == np.amin(function1))
+print('x = :', Last_pop[np.argmin(function1)].variables)
+print('function 2 fitness at this index: ', function2[np.argmin(function1)])
+print('...')
+print('Minimum function 2 fitness: ', min(function2))
+print('Index of :', np.argmin(function2)) #np.where(function2 == np.amin(function2))
+print('x = :', Last_pop[np.argmin(function2)].variables)
+print('function 1 fitness at this index: ', function1[np.argmin(function2)])
 plt.show()
-print 'Done'
+print('Done')

@@ -40,10 +40,10 @@ listOfObjectiveFunctions = [ObjectiveFunction_multi(testFunction1), ObjectiveFun
 varTypeVariable = "c"
 LB = [-55]
 UB = [55]
-print len(objectiveList)
+print(len(objectiveList))
 #print len(testObjectiveObject)
 
-print len(listOfObjectiveFunctions)
+print(len(listOfObjectiveFunctions))
 
 #test_problem = ProblemParameters_multi(objective = listOfObjectiveFunctions, lowerBounds = LB, upperBounds = UB, varType = varTypeVariable)
 test_gh = GnoweeHeuristics_multi(objective = listOfObjectiveFunctions, lowerBounds = LB, upperBounds = UB, varType = varTypeVariable, optimum = 0)
@@ -83,8 +83,8 @@ for i in range(0,populationSize):
 
 #test the dominates function
 if R_t[0].dominates(R_t[1]):
-    print " x = ", R_t[0].features, "dominates x = ", R_t[1].features
+    print(" x = ", R_t[0].features, "dominates x = ", R_t[1].features)
 #test the nonDom Sort
 N = populationSize
 sorted_population = FastNonDomSort_Gnowee(R_t, N, problemParametersObject)
-print "Test Done"
+print("Test Done")
