@@ -1,34 +1,29 @@
 # Gnowee Modules
-import Gnowee_multi
-from ObjectiveFunction_Multi import ObjectiveFunction_multi
+import Gnowee
+from ObjectiveFunction import ObjectiveFunction
 from Constraints import Constraint
-from GnoweeHeuristics_multi import GnoweeHeuristics_multi
+from GnoweeHeuristics import GnoweeHeuristics
 import numpy as np
 from OptiPlot import plot_vars
 import matplotlib.pyplot as plt
 
 # User Function Module
 from TestFunction import testfittness
-#second Function
-
-#objective function array
-
-
 testarray = np.zeros(6)
 print(testfittness(testarray))
-sz = 100
-all_ints = ["i" for i in range(sz)]
+sz = 2
+all_ints = ["c" for i in range(sz)]
 LB = np.zeros(sz)
-UppB = np.ones(sz)
+UppB = np.ones(sz)*10
 
 # Select optimization problem type and associated parameters
-gh = GnoweeHeuristics_multi(objective=ObjectiveFunction_multi(testfittness),
+gh = GnoweeHeuristics(objective=ObjectiveFunction(testfittness),
                       lowerBounds=LB, upperBounds=UppB,
                       varType=all_ints, optimum=0)
 print(gh)
 
 # Run optimization
-(timeline, Last_pop) = Gnowee_multi.main_multi(gh)
+(timeline) = Gnowee.main(gh)
 
 length = len(timeline)
 fitnesses = np.zeros(length)

@@ -20,6 +20,7 @@ import copy as cp
 
 from Constraints import Constraint
 from ObjectiveFunction_Multi import ObjectiveFunction_multi
+import os
 
 #CHANGES MADE BY ALEX:
 #changes:
@@ -28,6 +29,14 @@ from ObjectiveFunction_Multi import ObjectiveFunction_multi
 
 #CRITICAL CHANGES BY ALEX:
 #the objective keyword arguement should now be equal to a list of objective function objects
+#made chages to the problem paramters object to reduce redundant evaluations
+# added the use of the past_results functions
+
+from pastResults import resultsLibray_Interface
+Default_FileName = "DefaultResultLibName"
+DefaultColumnNames = ["feature_vectors", "fittness", "EvaluationNumber"]
+DefaultkeyColumnIndex = 0
+DefaultValueColumnIndex = 1
 
 #------------------------------------------------------------------------------#
 class Parent_multi(object):
@@ -179,7 +188,11 @@ class ProblemParameters_multi(object):
 
     def __init__(self, objective=None, constraints=[], lowerBounds=[],
                  upperBounds=[], varType=[], discreteVals=[], optimum=0.0,
-                 pltTitle='', histTitle='', varNames=['']):
+                 pltTitle='', histTitle='', varNames=[''], BatchSubmit = False,
+                 FileName = Default_FileName, ColumnNames = DefaultColumnNames, 
+                 keyColumnIndex = DefaultkeyColumnIndex, 
+                 ValueColumnIndex = DefaultValueColumnIndex, Filelocation = os.getcwd(),
+                 templateFile = "batch_test.txt", prefix = "MCNP_File_Num"):
         """!
         Constructor for the ProblemParameters class. The default constructor
         is useless for an optimization, but allows a placeholder class to be
@@ -265,19 +278,35 @@ class ProblemParameters_multi(object):
         #CHANGES MADE BY ALEX:
         #changed:
         #the objective variable is now an ObjectiveFunction_multi object
-        # this means that the objective functino(s) are stored in an array
+        # this means that the objective function(s) are stored in an array
         #inorder to callother mulit-objective compatible code the import statement was changed
         #Added:
         #the num_objective_functions variable: stores the number of objective functions
+        # BatchSubmit = False wich tells teh system if there is some special method for
+        # running a batch of feature vectors together
+        #8-17-2021:
+        #added a bunch of variables for creating a data save file that will help reduce
+        #redundant evaluations
+        #added variables for performing batch submission
+
+        self.BatchSubmit = BatchSubmit
+        self.templateFile = templateFile
+        self.prefix = prefix
         if type(objective) != list:
             self.numObjectiveFunctions = 1
-        else:
+            ## @var objective
+            # <em> ObjectiveFunction Object: </em> The objective function object
+            # to be used for the optimization.
+            self.objective = objective
+        else: #if the objecitve was submitted as a list
             self.numObjectiveFunctions = len(objective)
-        ## @var objective
-        # <em> ObjectiveFunction Object: </em> The objective function object
-        # to be used for the optimization.
-        self.objective = objective
+            if self.numObjectiveFunctions == 1:
+                self.objective = objective[0]
+            else: #if there is more than one objective function
+                self.objective = objective
 
+        if self.numObjectiveFunctions == 1: #because right now the result save system is only integrated with the single objective system
+            self.LibInterface = resultsLibray_Interface(FileName, ColumnNames, keyColumnIndex, ValueColumnIndex, Filelocation)
         ## @var constraints
         # <em> list of Constraint Objects: </em> The constraints on the
         # optimization design space.

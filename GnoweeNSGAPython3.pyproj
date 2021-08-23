@@ -1,0 +1,89 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>130cf801-5a19-4ef4-98d4-7e80ef64a9c2</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>BasicTest_Multi.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>GnoweeNSGAPython3</Name>
+    <RootNamespace>GnoweeNSGAPython3</RootNamespace>
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="BasicTest_Multi.py" />
+    <Compile Include="Constraints.py" />
+    <Compile Include="ExampleFunction.py" />
+    <Compile Include="Gnowee.py" />
+    <Compile Include="GnoweeHeuristics.py" />
+    <Compile Include="GnoweeHeuristics_multi.py" />
+    <Compile Include="GnoweeNSGAPython3.py" />
+    <Compile Include="GnoweeUtilities.py" />
+    <Compile Include="GnoweeUtilities_multi.py" />
+    <Compile Include="Gnowee_multi.py" />
+    <Compile Include="Gnowee_multi_testNSGA.py" />
+    <Compile Include="ManualTest.py" />
+    <Compile Include="MultiObjectiveTest.py" />
+    <Compile Include="MultiVariateTest.py" />
+    <Compile Include="nsga2\evolution.py" />
+    <Compile Include="nsga2\individual.py" />
+    <Compile Include="nsga2\population.py" />
+    <Compile Include="nsga2\problem.py" />
+    <Compile Include="nsga2\utils.py" />
+    <Compile Include="nsga2\__init__.py" />
+    <Compile Include="NSGAmethods.py" />
+    <Compile Include="NSGAOutline3.py" />
+    <Compile Include="NSGATestFunctions.py" />
+    <Compile Include="NSGA_evolution_nochildren.py" />
+    <Compile Include="ObjectiveFunction.py" />
+    <Compile Include="ObjectiveFunction_Multi.py" />
+    <Compile Include="OptiPlot.py" />
+    <Compile Include="OptiPlot_multi.py" />
+    <Compile Include="ProblemWithLists.py" />
+    <Compile Include="Sampling.py" />
+    <Compile Include="Sampling_multi.py" />
+    <Compile Include="TestFunction.py" />
+    <Compile Include="TestInFolder2_success.py" />
+    <Compile Include="TestNSGAImplement.py" />
+    <Compile Include="TSP.py" />
+    <Compile Include="WildTest.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="nsga2\" />
+    <Folder Include="nsga2\__pycache__\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="nsga2\evolution.pyc" />
+    <Content Include="nsga2\individual.pyc" />
+    <Content Include="nsga2\population.pyc" />
+    <Content Include="nsga2\problem.pyc" />
+    <Content Include="nsga2\utils.pyc" />
+    <Content Include="nsga2\__init__.pyc" />
+    <Content Include="nsga2\__pycache__\evolution.cpython-37.pyc" />
+    <Content Include="nsga2\__pycache__\individual.cpython-37.pyc" />
+    <Content Include="nsga2\__pycache__\population.cpython-37.pyc" />
+    <Content Include="nsga2\__pycache__\problem.cpython-37.pyc" />
+    <Content Include="nsga2\__pycache__\utils.cpython-37.pyc" />
+    <Content Include="nsga2\__pycache__\__init__.cpython-37.pyc" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>

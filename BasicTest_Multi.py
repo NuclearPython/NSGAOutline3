@@ -1,6 +1,3 @@
-
-
-
 #import Gnowee_multi
 # Gnowee Modules
 import Gnowee_multi
@@ -25,13 +22,12 @@ from nsga2.problem import Problem
 
 
 objectiveList = [f1, f2]
-testObjectiveObject = ObjectiveFunction_multi(objectiveList) #fails
+testObjectiveObject = ObjectiveFunction_multi(objectiveList)
 listOfObjectiveFunctions = [ObjectiveFunction_multi(f1), ObjectiveFunction_multi(f2)]
 varTypeVariable = "c"
 LB = [-55]
 UB = [55]
 print(len(objectiveList))
-
 
 print(len(listOfObjectiveFunctions))
 
@@ -48,9 +44,7 @@ MaxGenerations = 100
 pop_test = [] #to be list of parents
 parent_fitness = np.zeros((len(listOfObjectiveFunctions),1))
 
-
 # Select optimization problem type and associated parameters
-
 # Run optimization
 (timeline, Last_pop) = Gnowee_multi.main_multi(test_gh)
 

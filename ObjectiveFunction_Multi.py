@@ -57,7 +57,10 @@ class ObjectiveFunction_multi(object):
         #CHANGES MADE BY ALEX:
         #the program should now expect self to be a 1 by n array that 
         #stores the various objective functions
-
+        try:
+            self.num = len(method)
+        except:
+            self.num = 1
         ## @var _FUNC_DICT
         # <em> dictionary of function handles: </em> Stores
         # the mapping between the string names and function handles for

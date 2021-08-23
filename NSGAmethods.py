@@ -35,6 +35,7 @@ def runNSGA_generation(P_t, Q_t, problemParametersObject):
     num_objectives = len(objectiveFunctionlist)
     for k in range(0, num_children):
         child_list[k].fitness = np.resize(child_list[k].fitness, (num_objectives, 1))
+        #child_list[k].features = np.resize(child_list[k].features, (numVariables, 1))
 
     for k in range(0, num_children):
         #print 'k = ', k

@@ -39,7 +39,7 @@ from nsga2.individual import Individual
 import random
 import NSGAmethods
 from GnoweeUtilities_multi import Parent_multi
-
+from BatchSubmit_beta import Batch_Submit, write_mcnp_input_simple
 #CRITICAL CHANGES BY ALEX:
 #the objective keyword arguement should now be equal to a list of objective function objects
 
@@ -870,12 +870,35 @@ class GnoweeHeuristics_multi(ProblemParameters_multi):
         # Track # of replacements to track effectiveness of search methods
         replace = 0
         numFunctions = self.numObjectiveFunctions
-
+        numChildren = len(children)
         if numFunctions == 1:
+            #MODIFICATION: DO ALL FUNCTION EVALUATIONS HERE IN ONE STEP
 
+            if self.BatchSubmit== True:
+                #use batch submission system
+
+                #first remove from the list to be evaluated all the feature vectors that have already been evaluated
+                weeded_Children = self.LibInterface.weed_list(children)
+                #send these feature fectors to the batch submission system (aasumes user has specified a translate_feature_vector system
+                outputFileNames = BatchSubmit(weeded_Children, self.templateFile, self.prefix)
+                num_children_to_eval = len(weeded_Children)
+                for i in range(0,num_children_to_eval):
+                    newfit = self.objective.func(weeded_Children[i], outputFileNames[i])
+                    self.LibInterface.add_to_lib(weeded_Children[i], newfit)
+                self.LibInterface.SaveLib()
+            else:
+                #first remove from the list to be evaluated all the feature vectors that have already been evaluated
+                weeded_Children = self.LibInterface.weed_list(children)
+                num_children_to_eval = len(weeded_Children)
+                for i in range(0,num_children_to_eval):
+                    new_fit = self.objective.func(weeded_Children[i])
+                    self.LibInterface.add_to_lib(weeded_Children[i], new_fit)
+
+                self.LibInterface.SaveLib()
             # Find worst fitness to use as the penalty
             for i in range(0, len(children), 1):
-                fnew = self.objective.func(children[i])
+                #fnew = self.objective.func(children[i]) #REDUNDANT
+                fnew = self.LibInterface.getFitness(children[i])
                 if fnew > self.penalty:
                     self.penalty = fnew
 
@@ -888,9 +911,10 @@ class GnoweeHeuristics_multi(ProblemParameters_multi):
                     j = adoptedParents[i]
                 else:
                     j = i
-                fnew = self.objective.func(children[i])
+                #fnew = self.objective.func(children[i]) #REDUNDANT
+                fnew = self.LibInterface.getFitness(children[i])
                 for con in self.constraints:
-                    fnew += con.func(children[i])
+                    fnew += con.func(children[i]) #REDUNDANT???
                 feval += 1
                 if fnew < parents[j].fitness:
                     parents[j].fitness = fnew
@@ -904,9 +928,10 @@ class GnoweeHeuristics_multi(ProblemParameters_multi):
                                                               ).flatten()
                         parents[j].variables = self.map_to_discretes(
                                                       parents[j].variables)
-                        fnew = self.objective.func(parents[j].variables)
+                        #fnew = self.objective.func(parents[j].variables) #REDUNDANT
+                        fnew = self.LibInterface.getFitness(parents[j].variables)
                         for con in self.constraints:
-                            fnew += con.func(parents[j].variables)
+                            fnew += con.func(parents[j].variables) #REDUNDANT???
                         parents[j].fitness = fnew
                         parents[j].changeCount = 0
                 else:
@@ -916,9 +941,10 @@ class GnoweeHeuristics_multi(ProblemParameters_multi):
                                                               ).flatten()
                         parents[j].variables = self.map_to_discretes(
                                                       parents[j].variables)
-                        fnew = self.objective.func(parents[j].variables)
+                        #fnew = self.objective.func(parents[j].variables) #REDUNDANT
+                        fnew = self.LibInterface.getFitness(parents[j].variables)
                         for con in self.constraints:
-                            fnew += con.func(parents[j].variables)
+                            fnew += con.func(parents[j].variables) #REDUNDANT???
                         parents[j].fitness = fnew
                         parents[j].changeCount = 0
                         parents[j].stallCount = 0
@@ -985,7 +1011,7 @@ class GnoweeHeuristics_multi(ProblemParameters_multi):
             GnoweeParentObjectList = []
             numParents = len(newish_population)
             for ParentNum in range(0, numParents):
-                ParentObject = Parent_multi(variables = newish_population.population[ParentNum].features, fitness= newish_population.population[ParentNum].fitness)
+                ParentObject = Parent_multi(variables = np.squeeze(newish_population.population[ParentNum].features), fitness= newish_population.population[ParentNum].fitness)
                 GnoweeParentObjectList.append(ParentObject)
             parents = GnoweeParentObjectList
 
